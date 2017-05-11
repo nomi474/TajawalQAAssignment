@@ -3,12 +3,15 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Annotation Test]">
   <test name="Default test(failed)">
     <classes>
-      <class name="com.tjwl.tests.SearchFlightsPageTest">
+      <class name="com.tjwl.tests.SearchResultsPageTests">
         <methods>
+          <include name="testEmiratesAirlinePresent"/>
+          <include name="testTicketPricesAppear"/>
+          <include name="testSearchResultsAppear"/>
+          <include name="testUserCanSelectFlight"/>
           <include name="setup"/>
-          <include name="SearchFlightsTest"/>
         </methods>
-      </class> <!-- com.tjwl.tests.SearchFlightsPageTest -->
+      </class> <!-- com.tjwl.tests.SearchResultsPageTests -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Annotation Test] -->

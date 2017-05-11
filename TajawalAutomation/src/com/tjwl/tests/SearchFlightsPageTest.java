@@ -6,19 +6,16 @@ import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.tjwl.common.AppDriver;
 import com.tjwl.pages.SearchFlightsPage;
 
-public class SearchFlightsPageTest {
+public class SearchFlightsPageTest extends BaseTest{
 	WebDriver driver;
 	SearchFlightsPage sf;
 	
 	 @BeforeMethod
 	 public void setup(){
-		 driver = new AppDriver().getDriver();
+		 driver = getDriver();
 	     driver.get("http://www.tajawal.com");
-		 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		 driver.manage().window().maximize();
 		 sf = new SearchFlightsPage(driver);
 	 }
 	@Test

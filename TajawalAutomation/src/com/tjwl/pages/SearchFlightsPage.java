@@ -2,7 +2,6 @@ package com.tjwl.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-//import util.WaitFor;
 
 
 import org.openqa.selenium.WebElement;
