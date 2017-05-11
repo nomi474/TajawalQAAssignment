@@ -12,14 +12,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BaseTest {
 
-   WebDriver driver;
-   Properties p;
-   WebDriverWait wait;
-
-    public BaseTest(){
-    	p=new Properties();	
+   public static WebDriver driver;
+    	
+   	 public void setup(){
+   	    Properties p=new Properties();
+   	    WebDriverWait wait;
     	try {
-    	FileInputStream fi=new FileInputStream("C:\\Workspaces\\Selenium\\global.properties");
+    	FileInputStream fi=new FileInputStream("C:\\Tajawal\\TajawalAutomation\\global.properties");
 		p.load(fi);
     	} catch (IOException ioe){
     		
@@ -32,15 +31,13 @@ public class BaseTest {
 			System.setProperty("webdriver.chrome.driver", "C:\\Tajawal\\TajawalAutomation\\lib\\chromedriver.exe");
 			driver = new ChromeDriver();
 		}		
-		
+	    driver.get(p.getProperty("baseURL"));
     	driver.manage().timeouts().implicitlyWait(25, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
     	wait = new WebDriverWait(driver, 10);
-    }
-
+   	 }
 
     public WebDriver getDriver(){
         return driver;
     }
-
 }
