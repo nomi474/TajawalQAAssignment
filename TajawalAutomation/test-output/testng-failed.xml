@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Annotation Test]">
+  <test name="Default test(failed)">
+    <classes>
+      <class name="com.tjwl.tests.SearchFlightsPageTest">
+        <methods>
+          <include name="setup"/>
+          <include name="SearchFlightsTest"/>
+        </methods>
+      </class> <!-- com.tjwl.tests.SearchFlightsPageTest -->
+    </classes>
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Annotation Test] -->

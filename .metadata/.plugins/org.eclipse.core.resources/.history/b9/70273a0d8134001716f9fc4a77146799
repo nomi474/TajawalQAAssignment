@@ -1,0 +1,7 @@
+package com.tjwl.common;
+
+public class BaseTest {
+	// Use the application driver
+    WebDriver driver;
+
+}

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Annotation Test" duration-ms="54261" started-at="2017-05-11T13:07:58Z" finished-at="2017-05-11T13:08:52Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="54261" started-at="2017-05-11T13:07:58Z" finished-at="2017-05-11T13:08:52Z">
+      <class name="com.tjwl.tests.SearchFlightsPageTest">
+        <test-method status="PASS" signature="setup()[pri:0, instance:com.tjwl.tests.SearchFlightsPageTest@3d3fcdb0]" name="setup" is-config="true" duration-ms="21411" started-at="2017-05-11T17:07:58Z" finished-at="2017-05-11T17:08:20Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="SearchFlightsTest()[pri:0, instance:com.tjwl.tests.SearchFlightsPageTest@3d3fcdb0]" name="SearchFlightsTest" duration-ms="32795" started-at="2017-05-11T17:08:20Z" finished-at="2017-05-11T17:08:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- SearchFlightsTest -->
+      </class> <!-- com.tjwl.tests.SearchFlightsPageTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Annotation Test -->
+</testng-results>
