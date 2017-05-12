@@ -2,8 +2,6 @@ package com.tjwl.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-
-
 import org.openqa.selenium.WebElement;
 
 import java.time.LocalDate;
@@ -11,7 +9,6 @@ import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 public class SearchFlightsPage {
 	
@@ -19,13 +16,12 @@ public class SearchFlightsPage {
 	private static LocalDate departureDate;
 	private static LocalDate returnDate;
 	
-    public SearchFlightsPage(WebDriver driver) {
-    	this.driver = driver;
-    }
+	public SearchFlightsPage(WebDriver driver){
+		this.driver = driver;
+	}
     
     public void selectFlightsPage(){
-    	driver.findElement(By.id("nav-flights-cta"));
-    	driver.manage().timeouts().implicitlyWait(12, TimeUnit.SECONDS);
+    	driver.findElement(By.id("nav-flights-cta"));    	
     }
     
     public void selectRoundTrip(){
@@ -86,18 +82,17 @@ public class SearchFlightsPage {
     }
     
 
-    public SearchResultsPage searchForTheJourney() {
+    public void searchForTheJourney() {
     	//Click on the 'Search flights' button.
     	driver.findElement(By.xpath("//span[contains(.,'Search flights')]")).click();	
-        return new SearchResultsPage(driver);
     }
     
     private void generateRandomDates(){    	
-    	departureDate = LocalDate.now().plus(Period.ofDays((new Random().nextInt(20))));
+    	departureDate = LocalDate.now().plus(Period.ofDays((new Random().nextInt(40))));
     	//LocalDate returnDate = LocalDate.now().plus(Period.ofDays((new Random().nextInt(20))));
-    	returnDate = departureDate.now().plus(Period.ofDays((new Random().nextInt(20))));
+    	returnDate = departureDate.now().plus(Period.ofDays((new Random().nextInt(40))));
     	while(returnDate.isBefore(departureDate)){
-    		returnDate = LocalDate.now().plus(Period.ofDays((new Random().nextInt(20))));
+    		returnDate = LocalDate.now().plus(Period.ofDays((new Random().nextInt(40))));
     	}
     }
     private List<String> splitDate(String date){

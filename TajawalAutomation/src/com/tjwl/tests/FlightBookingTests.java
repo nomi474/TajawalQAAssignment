@@ -12,7 +12,6 @@ public class FlightBookingTests extends BaseTest{
 	
 	@BeforeSuite
 	public void launchLandingPage(){
-		 setup();
 		 sf = new SearchFlightsPage(driver);
 		 sr = new SearchResultsPage(driver);
 	}
