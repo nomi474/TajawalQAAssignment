@@ -1,11 +1,8 @@
 package com.tjwl.tests;
 
-import java.util.concurrent.TimeUnit;
-
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
-import com.google.common.base.Verify;
 import com.tjwl.pages.SearchFlightsPage;
 import com.tjwl.pages.SearchResultsPage;
 
