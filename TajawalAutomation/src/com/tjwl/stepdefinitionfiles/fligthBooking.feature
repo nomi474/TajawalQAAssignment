@@ -12,9 +12,7 @@ Scenario:	Search and book a flight
 	And I maximize the browser window
 	And I wait for 5 seconds
 	And I enter the departureCity
-	And I wait for 6 seconds	
 	And I enter the destinationCity
-	And I wait for 6 seconds
 	And I select the departureDate
 	And I wait for 3 seconds
 	And I select the returnDate
@@ -55,8 +53,8 @@ Scenario:	Search and book a flight
 	And I select expiration month as "06 - June"
 	And I select expiration year as 2018
 	And I enter security code cvv as 666
+	And I verify that the total on "Pay now" button shows correct amount
 	And I verify that the total on Payment page matches the total on Traveler details page
-	And I verify that the total on "Pay now" button matches shows correct amount
 	
 	
 	

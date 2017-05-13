@@ -1,7 +1,6 @@
 package com.tjwl.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -44,27 +43,31 @@ public class SearchFlightsPage {
     	departCityList.add("Jakarta");
     	departCityList.add("Abu Dhabi");
     	departCityList.add("Jeddah");
-    	departCityList.add("Mumbai");
+    	departCityList.add("Hong Kong");
     	int i = rn.nextInt(5);
     	driver.findElement(By.id("flights-search-origin-0")).clear();
     	driver.findElement(By.id("flights-search-origin-0")).sendKeys(departCityList.get(i));
-    	driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-    	driver.findElement(By.id("flights-search-origin-0")).sendKeys(Keys.TAB);
+    	List<WebElement> autoSuggest = driver.findElements(By.xpath("//li[@class='uib-typeahead-match']"));
+    	for (WebElement a : autoSuggest){
+    		autoSuggest.get(0).click();
+    	}
     }
     
     public void enterRandomDestinationCity(){
     	Random rn = new Random();
     	int i = rn.nextInt(5);
     	ArrayList<String> destCityList = new ArrayList<String>();
-    	destCityList.add("Sydney");
+    	destCityList.add("Prague");
     	destCityList.add("Los Angeles");
-    	destCityList.add("Paris");
-    	destCityList.add("London");
+    	destCityList.add("Amsterdam");
+    	destCityList.add("Budapest");
     	destCityList.add("Cairo");
     	driver.findElement(By.id("flights-search-destination-0")).clear();
     	driver.findElement(By.id("flights-search-destination-0")).sendKeys(destCityList.get(i));
-    	driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-    	driver.findElement(By.id("flights-search-destination-0")).sendKeys(Keys.TAB);
+    	List<WebElement> autoSuggest = driver.findElements(By.xpath("//li[@class='uib-typeahead-match']"));
+    	for (WebElement a : autoSuggest){
+    		autoSuggest.get(0).click();
+    	}
     }
 
     

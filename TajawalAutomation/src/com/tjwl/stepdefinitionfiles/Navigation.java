@@ -221,7 +221,7 @@ public class Navigation{
 		pd.verifyTotalMatchesWithTravelDetailsPage();				
 	}
 	
-	@And("^I verify that the total on \"Pay now\" button matches shows correct amount$")
+	@And("^I verify that the total on \"Pay now\" button shows correct amount$")
 	public void verifyTotalOnPayNowButton(){
 		pd.verifyTotalOnPayNowButton();				
 	}

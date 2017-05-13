@@ -17,12 +17,7 @@ public class TravelerDetails {
 	public static String totalPriceOnTravelDetailsPage;
     public TravelerDetails(WebDriver driver) {
         this.driver = driver;
-    }
-	
-    public void getTotalTicketsPrice(){
-		totalPriceOnTravelDetailsPage = driver.findElement(By.xpath("(//*[@class='total-payment__total']/span[2])")).getText();
-		//return totalPriceOnTravelersPage;
-	}
+    }	
 	
 	public void selectTitleForTraveler1(String title1){
 		WebElement select = driver.findElement(By.id("flights-summary-travelers-form-title-0"));

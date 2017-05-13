@@ -19,7 +19,7 @@ public class PaymentDetails {
 	
 	public void verifyPaymentDetailsPageShowsCorrectly(){
 		
-		cf.isElementPresent(By.id("common-credit-card-number"));
+		//cf.isElementPresent(By.id("common-credit-card-number"));
 	}
 	
 	public void enterCardholderName(String chName){
@@ -51,7 +51,7 @@ public class PaymentDetails {
 	
 	public void verifyTotalMatchesWithTravelDetailsPage(){
 		totalPriceOnPaymentPage = driver.findElement(By.xpath("//li[@class='total-payment__total']/span[2]")).getText();
-		Assert.assertEquals(TravelerDetails.totalPriceOnTravelDetailsPage, totalPriceOnPaymentPage);
+		Assert.assertTrue(TravelerDetails.totalPriceOnTravelDetailsPage.equals(totalPriceOnPaymentPage));
 	}
 	
 	public void verifyTotalOnPayNowButton(){
