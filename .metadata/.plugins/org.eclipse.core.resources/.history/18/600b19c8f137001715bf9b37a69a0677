@@ -6,12 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
-import com.tjwl.common.CommonFeatures;
-
 public class PaymentDetails {
 	WebDriver driver;
-	String totalPriceOnPaymentPage;
-	CommonFeatures cf;
 	
 	public PaymentDetails(WebDriver driver){
 		this.driver = driver;
@@ -19,7 +15,6 @@ public class PaymentDetails {
 	
 	public void verifyPaymentDetailsPageShowsCorrectly(){
 		
-		cf.isElementPresent(By.id("common-credit-card-number"));
 	}
 	
 	public void enterCardholderName(String chName){
@@ -31,7 +26,6 @@ public class PaymentDetails {
 		driver.findElement(By.id("common-credit-card-number")).clear();
 		driver.findElement(By.id("common-credit-card-number")).sendKeys(cardNum);
 	}
-	
 	public void selectExpirationMonth(String expMonth){
 		WebElement select = driver.findElement(By.xpath("//select[@ng-model='vm.payment.card.expiryMonth']"));
 		Select dropDown = new Select(select);
@@ -50,13 +44,13 @@ public class PaymentDetails {
 	}
 	
 	public void verifyTotalMatchesWithTravelDetailsPage(){
-		totalPriceOnPaymentPage = driver.findElement(By.xpath("//li[@class='total-payment__total']/span[2]")).getText();
-		Assert.assertEquals(TravelerDetails.totalPriceOnTravelDetailsPage, totalPriceOnPaymentPage);
+		String totalPriceOnTravelDetailsPage = driver.findElement(By.xpath("//li[@class='total-payment__total']/span[2]")).getText();
+		Assert.assertEquals(totalPriceOnTravelDetailsPage, totalPriceOnTravelDetailsPage);
 	}
 	
 	public void verifyTotalOnPayNowButton(){
 		String payNowButtonText = driver.findElement(By.xpath("//button[@id='flights-payment-paynow']")).getText();
-		Assert.assertTrue(payNowButtonText.endsWith(totalPriceOnPaymentPage));
+		Assert.assertTrue(payNowButtonText.endsWith(totalPriceOnTravelDetailsPage));
 	}
 	
 }

@@ -1,12 +1,14 @@
 package com.tjwl.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import com.tjwl.common.CommonFeatures;
 
 import java.time.LocalDate;
 import java.time.Period;
@@ -21,40 +23,33 @@ public class SearchFlightsPage {
 	WebDriverWait wait;
 	private static LocalDate departureDate;
 	private static LocalDate returnDate;
-	CommonFeatures cf;
 	
 	public SearchFlightsPage(WebDriver driver){
 		this.driver = driver;
 	}
     
     public void selectFlightsPage(){
-    	driver.findElement(By.id("nav-flights-cta")).click(); 
-    	driver.manage().timeouts().implicitlyWait(25, TimeUnit.SECONDS);
+    	driver.findElement(By.id("nav-flights-cta"));    	
     }
     
     public void selectRoundTrip(){
-    	driver.findElement(By.id("flights-search-type-RoundTrip-inp")).click();
-    	driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+    	driver.findElement(By.id("flights-search-type-RoundTrip-inp"));
     }
     
-    public void enterRandomDepartureCity(){
-    	Random rn = new Random();
+    public void setDepartureCity(){
     	ArrayList<String> departCityList = new ArrayList<String>();
     	departCityList.add("Dubai");
-    	departCityList.add("Jakarta");
+    	departCityList.add("Karachi");
     	departCityList.add("Abu Dhabi");
     	departCityList.add("Jeddah");
     	departCityList.add("Mumbai");
-    	int i = rn.nextInt(5);
+    	int i;
     	driver.findElement(By.id("flights-search-origin-0")).clear();
     	driver.findElement(By.id("flights-search-origin-0")).sendKeys(departCityList.get(i));
-    	driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-    	driver.findElement(By.id("flights-search-origin-0")).sendKeys(Keys.TAB);
+
     }
     
-    public void enterRandomDestinationCity(){
-    	Random rn = new Random();
-    	int i = rn.nextInt(5);
+    public void setDestinationCity(String destinationCity){
     	ArrayList<String> destCityList = new ArrayList<String>();
     	destCityList.add("Sydney");
     	destCityList.add("Los Angeles");
@@ -62,9 +57,7 @@ public class SearchFlightsPage {
     	destCityList.add("London");
     	destCityList.add("Cairo");
     	driver.findElement(By.id("flights-search-destination-0")).clear();
-    	driver.findElement(By.id("flights-search-destination-0")).sendKeys(destCityList.get(i));
-    	driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-    	driver.findElement(By.id("flights-search-destination-0")).sendKeys(Keys.TAB);
+    	driver.findElement(By.id("flights-search-destination-0")).sendKeys(destinationCity);
     }
 
     
@@ -123,7 +116,6 @@ public class SearchFlightsPage {
     		returnDate = LocalDate.now().plus(Period.ofDays((new Random().nextInt(40))));
     	}
     }
-    
     private List<String> splitDate(String date){
     	List<String> myList = new ArrayList<String>();
     	String[] splitDate = date.split("-",2);

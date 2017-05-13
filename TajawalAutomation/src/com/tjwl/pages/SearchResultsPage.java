@@ -14,20 +14,21 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import com.tjwl.common.CommonFeatures;
+
 public class SearchResultsPage {
 	 WebDriver driver;	 
 	 WebDriverWait wait;
 	 JavascriptExecutor jse;
-	 Actions builder;
+	 CommonFeatures cf;
+	 public static String totalPriceOnSearchResultsPage; 
 	    public SearchResultsPage(WebDriver driver) {
 	        this.driver = driver;
 	    }
 
 	    public void filterByAirline() {
 	    	jse = (JavascriptExecutor)driver;
-	    	boolean foundEmirates = false;
-	        //waitForSearchResultsToAppear();	        
-	        builder = new Actions(driver);
+	    	boolean foundEmirates = false;        
 			
 			List<WebElement> airlinesList = driver.findElements(By.xpath("//label[(contains(@for,'flights-filters-airline-leg-0-check_'))]/span"));
 			//Loop through airline names
@@ -57,35 +58,22 @@ public class SearchResultsPage {
 	    }//end method
 
 	    public boolean testResultsAppearForCompleteTrip() {
-	        //waitForSearchResultsToAppear();
-	        return isElementPresent(By.id("flights-results-tab-complete-trip-btn"));
+	    	cf = new CommonFeatures(driver);	    	
+	        return cf.isElementPresent(By.id("flights-results-tab-complete-trip-btn"));
 	    }
 	    
-	    public String getTicketPrice(){
-	    	String totalPriceOnSelectFlightPage = driver.findElement(By.xpath("(//span[@class='text-chambray font-weight-700 h2 no-margin'])[1]")).getText();
-	    	return totalPriceOnSelectFlightPage;
+	    public void getTicketPrice(){
+	    	totalPriceOnSearchResultsPage = driver.findElement(By.xpath("(//span[@class='text-chambray font-weight-700 h2 no-margin'])[1]")).getText();
+	    	//return SearchResultsPage.totalPriceOnSelectFlightPage;
 	    }
 	    
 	    public void selectFlight(){
+
 	    	JavascriptExecutor jse = (JavascriptExecutor)driver;
-	    	jse.executeScript("scroll(0, -300);");
+	    	jse.executeScript("scroll(0, -500);");
+	    	driver.manage().timeouts().implicitlyWait(25, TimeUnit.SECONDS);
 	    	WebElement selectFlightButton = driver.findElement(By.id("flights-results-select-cta-btn-0"));
 	    	//Press the 'Select' button for the first flight result
 			selectFlightButton.click();
-	    }
-	    private void waitForSearchResultsToAppear() {
-			driver.manage().timeouts().implicitlyWait(35, TimeUnit.SECONDS);
-			wait = new WebDriverWait(driver, 20);
-	    	wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("flights-results-select-cta-btn-0"))));
-	    }
-
-	    private boolean isElementPresent(By by) {
-	        try {
-	            driver.findElement(by);
-	            return true;
-	        } catch (NoSuchElementException e) {
-	            return false;
-	        }
-	    }
-
+	    }	    
 }

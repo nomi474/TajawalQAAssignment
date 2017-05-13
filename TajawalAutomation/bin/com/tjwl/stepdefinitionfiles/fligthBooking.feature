@@ -5,15 +5,20 @@ As a traveler
 I want to know how to purchase
 
 @tester
-Scenario	Search and book a flight
+Scenario:	Search and book a flight
 #Scenario:	Search for flights
 	Given I go to the page "http://www.tajawal.com"
 	And I wait for 5 seconds
 	And I maximize the browser window
+	And I wait for 5 seconds
 	And I enter the departureCity
+	And I wait for 6 seconds	
 	And I enter the destinationCity
+	And I wait for 6 seconds
 	And I select the departureDate
+	And I wait for 3 seconds
 	And I select the returnDate
+	And I wait for 3 seconds	
 	And I select two Adult passengers
 	And I click on the Search Flights button
 	And I wait for 20 seconds
@@ -21,8 +26,9 @@ Scenario	Search and book a flight
 #Scenario: Select a flight	
 	Given I am at the Flight Search Results page
 	And I wait for 50 seconds
-	Then I filter by my favorite airline
-	And I wait for 10 seconds
+	Then I filter by my favorite airline	
+	And I wait for 20 seconds
+	And I get the ticket price
 	And I select the flight I want to take
 	
 #Scenario: 	Enter Traveler details
@@ -40,6 +46,7 @@ Scenario	Search and book a flight
 	And I enter mobileNumber in Contact details section as 0529070789
 	And I verify that the Trip total price matches the total price on "Select a Flight" page
 	And I press the "Continue to Payment" button
+	And I wait for 25 seconds
 	
 #Scenario:	Enter Payment info
 	Given I am at the Payment page

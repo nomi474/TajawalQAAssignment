@@ -65,13 +65,15 @@ public class Navigation{
 	@And("^I enter the departureCity$")
 	public void enterDepartureCity(){
 		sf = new  SearchFlightsPage(driver);
-		//f.selectRoundTrip();
-		sf.enterRandomDepartureCity();
+		sf.selectFlightsPage();
+		sf.selectRoundTrip();
+		sf.setDepartureCity("Dubai");
+
 	}
 	
 	@And("^I enter the destinationCity$")
 	public void enterArrivalCity(){
-		sf.enterRandomDestinationCity();
+		sf.setDestinationCity("Los Angeles");
 
 	}
 	
@@ -101,16 +103,12 @@ public class Navigation{
 		sr.testResultsAppearForCompleteTrip();				
 	}
 	
-	@And("^I filter by my favorite airline$")
+	@Then("^I filter by my favorite airline$")
 	public void filterByAirline(){
 		sr.filterByAirline();				
 	}
 	
-	@And("^I get the ticket price$")
-	public void getTicketPrice(){
-		sr.getTicketPrice();
-	}
-	@And("^I select the flight I want to take$")
+	@Then("^I select the flight I want to take$")
 	public void bookAFlight(){
 		sr.selectFlight();				
 	}	
@@ -178,9 +176,10 @@ public class Navigation{
 	
 	@And("^I verify that the Trip total price matches the total price on \"Select a Flight\" page$")
 	public void verifyTotalPriceMatchesWithSelectFlightsPage(){	
+		td.verifyTotalPriceMatchesWithSelectFlightsPage();
 	}
 	
-	@And("^I press the \"Continue to Payment\" button$")
+	@And("^ press the \"Continue to Payment\" button$")
 	public void goToPaymentDetailsPage(){	
 		td.goToPaymentDetailsPage();
 	}

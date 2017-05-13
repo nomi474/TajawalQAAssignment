@@ -4,24 +4,17 @@ import java.util.concurrent.TimeUnit;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
-import com.tjwl.common.CommonFeatures;
-
 public class TravelerDetails {
 	WebDriver driver;
-	CommonFeatures cf;
-	public static String totalPriceOnTravelDetailsPage;
     public TravelerDetails(WebDriver driver) {
         this.driver = driver;
     }
-	
-    public void getTotalTicketsPrice(){
-		totalPriceOnTravelDetailsPage = driver.findElement(By.xpath("(//*[@class='total-payment__total']/span[2])")).getText();
-		//return totalPriceOnTravelersPage;
+	public String getTotalTicketsPrice(){
+		return driver.findElement(By.xpath("(//*[@class='total-payment__total']/span[2])")).getText();
 	}
 	
 	public void selectTitleForTraveler1(String title1){
@@ -83,20 +76,17 @@ public class TravelerDetails {
 	}
 	
 	public void verifyTotalPriceMatchesWithSelectFlightsPage(){
-		totalPriceOnTravelDetailsPage = driver.findElement(By.xpath("(//*[@class='total-payment__total']/span[2])")).getText();
-		Assert.assertTrue(totalPriceOnTravelDetailsPage.equals(SearchResultsPage.totalPriceOnSearchResultsPage));
+		String totalPriceOnTravelDetailsPage = driver.findElement(By.xpath("(//*[@class='total-payment__total']/span[2])")).getText();
+		Assert.assertTrue(totalPriceOnTravelDetailsPage.endsWith(totalPriceOnSelectFlightPage));
 
 	}
 	
 	public void verifyTravelerDetailsPageIsLaunched(){
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		cf = new CommonFeatures(driver);
-		cf.isElementPresent(By.id("flights-summary-go-to-payment-cta"));
 	}
 	
 	public void goToPaymentDetailsPage(){
 		driver.findElement(By.id("flights-summary-go-to-payment-cta")).click();		
 	}
-	  
 }
 
