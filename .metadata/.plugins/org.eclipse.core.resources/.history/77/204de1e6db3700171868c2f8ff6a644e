@@ -1,0 +1,5 @@
+package com.tjwl.pages;
+
+public class TravelerDetails {
+	totalPriceOnTravelDetailsPage = driver.findElement(By.xpath("(//*[@class='total-payment__total']/span[2])")).getText();
+}

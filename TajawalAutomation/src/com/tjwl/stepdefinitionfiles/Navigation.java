@@ -4,15 +4,17 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import com.tjwl.common.CommonFeatures;
+import com.tjwl.pages.PaymentDetails;
 import com.tjwl.pages.SearchFlightsPage;
 import com.tjwl.pages.SearchResultsPage;
+import com.tjwl.pages.TravelerDetails;
 
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 
@@ -23,6 +25,8 @@ public class Navigation{
 	SearchFlightsPage sf;
 	SearchResultsPage sr;
 	CommonFeatures cf;
+	TravelerDetails td;
+	PaymentDetails pd;
 
 	public Navigation(){
 		Properties p=new Properties();
@@ -53,12 +57,12 @@ public class Navigation{
 		cf.ImplicitWait(seconds);
 	}
 	
-	@Given("^I maximize the browser window$")
+	@And("^I maximize the browser window$")
 	public void maximizeWindow(){
 		cf.maximizeBrowserWindow();
 	}
 		
-	@Then("^I enter the departureCity$")
+	@And("^I enter the departureCity$")
 	public void enterDepartureCity(){
 		sf = new  SearchFlightsPage(driver);
 		sf.selectFlightsPage();
@@ -67,31 +71,30 @@ public class Navigation{
 
 	}
 	
-	@Then("^I enter the destinationCity$")
+	@And("^I enter the destinationCity$")
 	public void enterArrivalCity(){
 		sf.setDestinationCity("Los Angeles");
 
 	}
 	
-	@Then("^I select the departureDate$")
+	@And("^I select the departureDate$")
 	public void selectDepartureDate(){
 		sf.selectRandomDepartureDate();
 	}
 	
-	@Then("^I select the returnDate$")
+	@And("^I select the returnDate$")
 	public void selectReturnDate(){
 		sf.selectRandomReturnDate();
 	}
 	
-	@Then("^I select two Adult passengers$")
+	@And("^I select two Adult passengers$")
 	public void incrementAdultPassengerCount(){
 		sf.incrementAdultPassengersNumber();
 	}
 	
-	@Then("^I click on the Search Flights button$")
+	@And("^I click on the Search Flights button$")
 	public void pressSearchFlightsButton(){
 		sf.searchForTheJourney();	
-		cf.ImplicitWait(1);
 	}
 	
 	@Given("^I am at the Flight Search Results page$")
@@ -110,7 +113,116 @@ public class Navigation{
 		sr.selectFlight();				
 	}	
 	
-	public WebDriver getDriver(){
-		return driver;
+	@Given("^I am at the Traveler details page$")
+	public void verifyTravelerDetailsPageIsDisplayed(){
+		td = new TravelerDetails(driver);	
+		td.verifyTravelerDetailsPageIsLaunched();
 	}
+	
+	@Then("^I select title for Traveler1 as ([^\"]*)$")
+	public void selectTitleForTraveler1(String title1){	
+		td.selectTitleForTraveler1(title1);
+	}
+	
+	@And("^I enter firstName for Traveler1 as ([^\"]*)$")
+	public void enterFirstNameForTraveler1(String fname1){	
+		td.enterFirstNameForTraveler1(fname1);
+	}
+	
+	@And("^I enter lastName for Traveler1 as ([^\"]*)$")
+	public void enterLastNameForTraveler1(String lname1){	
+		td.enterLastNameForTraveler1(lname1);
+	}
+	
+	@And("^I enter firstName for Traveler2 as ([^\"]*)$")
+	public void enterFirstNameForTraveler2(String fname2){	
+		td.enterFirstNameForTraveler2(fname2);
+	}
+	
+	@And("^I select title for Traveler2 as ([^\"]*)$")
+	public void selectTitleForTraveler2(String title2){	
+		td.selectTitleForTraveler2(title2);
+	}
+	
+	@And("^I enter lastName for Traveler2 as ([^\"]*)$")
+	public void enterLastNameForTraveler2(String lname2){	
+		td.enterLastNameForTraveler2(lname2);
+	}
+	
+	@And("^I select title in Contact details section as ([^\"]*)$")
+	public void selectTitleForContact(String titleContact){	
+		td.selectTitleForContact(titleContact);
+	}
+	
+	@And("^I enter firstName in Contact details section as ([^\"]*)$")
+	public void enterFirstNameInContactSection(String fnameContact){	
+		td.enterFirstNameInContactSection(fnameContact);
+	}
+	
+	@And("^I enter lastName in Contact details section as ([^\"]*)$")
+	public void enterLastNameInContactSection(String lnameContact){	
+		td.enterLastNameInContactSection(lnameContact);
+	}
+	
+	@And("^I enter email in Contact details section as ([^\"]*)$")
+	public void enterEmailInContactSection(String emailContact){	
+		td.enterEmailInContactSection(emailContact);
+	}
+	
+	@And("^I enter mobileNumber in Contact details section as ([^\"]*)$")
+	public void enterMobileInContactSection(String mobileContact){	
+		td.enterMobileInContactSection(mobileContact);
+	}
+	
+	@And("^I verify that the Trip total price matches the total price on \"Select a Flight\" page$")
+	public void verifyTotalPriceMatchesWithSelectFlightsPage(){	
+		td.verifyTotalPriceMatchesWithSelectFlightsPage();
+	}
+	
+	@And("^ press the \"Continue to Payment\" button$")
+	public void goToPaymentDetailsPage(){	
+		td.goToPaymentDetailsPage();
+	}
+	
+	@Given("^I am at the Payment page$")
+	public void verifyPaymentDetailsPageAppears(){
+		pd = new PaymentDetails(driver);
+		pd.verifyPaymentDetailsPageShowsCorrectly();				
+	}
+	
+	@Then("^I enter Cardholder name as \"([^\"]*)\"$")
+	public void enterCardholderName(String chName){
+		pd.enterCardholderName(chName);				
+	}
+	
+	@And("^I enter Card number as ([^\"]*)$")
+	public void enterCardNum(String cardNum){
+		pd.enterCardNum(cardNum);			
+	}
+	
+	@And("^I select expiration month as \"([^\"]*)\"$")
+	public void selectExpirationMonth(String expMonth){
+		pd.selectExpirationMonth(expMonth);			
+	}
+	
+	@And("^I select expiration year as ([^\"]*)$")
+	public void selectExpirationYear(String expYear){
+		pd.selectExpirationYear(expYear);			
+	}
+	
+	@And("^I enter security code cvv as ([^\"]*)$")
+	public void enterSecurityCodeCVV(String cvvCode){
+		pd.enterSecurityCodeCVV(cvvCode);			
+	}
+	
+	@And("^I verify that the total on Payment page matches the total on Traveler details page$")
+	public void verifyTotalMatchesWithTravelDetailsPage(){
+		pd.verifyTotalMatchesWithTravelDetailsPage();				
+	}
+	
+	@And("^I verify that the total on \"Pay now\" button matches shows correct amount$")
+	public void verifyTotalOnPayNowButton(){
+		pd.verifyTotalOnPayNowButton();				
+	}
+	
 }

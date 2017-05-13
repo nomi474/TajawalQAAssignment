@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,46 +17,44 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class SearchResultsPage {
 	 WebDriver driver;	 
 	 WebDriverWait wait;
-
+	 JavascriptExecutor jse;
+	 Actions builder;
 	    public SearchResultsPage(WebDriver driver) {
 	        this.driver = driver;
 	    }
 
-
 	    public void filterByAirline() {
+	    	jse = (JavascriptExecutor)driver;
 	    	boolean foundEmirates = false;
-	        //waitForSearchResultsToAppear();
-	        Actions builder = new Actions(driver);
+	        //waitForSearchResultsToAppear();	        
+	        builder = new Actions(driver);
 			
 			List<WebElement> airlinesList = driver.findElements(By.xpath("//label[(contains(@for,'flights-filters-airline-leg-0-check_'))]/span"));
-			WebElement onlyLink;
 			//Loop through airline names
+			int j =0;
 			for (int i = 0; i < airlinesList.size(); i++) {
 				String airlineName = airlinesList.get(i).getText();
 				//System.out.println("Airline: " + airlineName);
-				if (driver instanceof ChromeDriver){
 					//Filter the results by 'Emirates' airline.
-					if (airlineName.equals("EK: Emirates")){
+					if (airlineName.contains("Emirates")){
 						foundEmirates = true;
-						//click on the corresponding only link and exit the loop
-						builder.moveToElement(airlinesList.get(i)).build().perform();
-						onlyLink= wait.until(ExpectedConditions.elementToBeClickable(airlinesList.get(i).findElement(By.xpath("./../../a"))));
-						builder.moveToElement(onlyLink).click().build().perform();				
-						break;
-					} 
-					if(foundEmirates == false){
-						//filter based on another airline
-						builder.moveToElement(airlinesList.get(0)).build().perform();
-						onlyLink= wait.until(ExpectedConditions.elementToBeClickable(airlinesList.get(0).findElement(By.xpath("./../../a"))));
-						builder.moveToElement(onlyLink).click().build().perform();		
-						break;
-					}
-				}else if(driver instanceof FirefoxDriver){
-					//implement functionality for firefox.
-				}
+						j=i;
+							
+					}//end outer if
 			}//end for loop
-			//return foundEmirates;
-	    }
+			for (int i = 0; i < airlinesList.size(); i++) {
+					if (i !=j){
+						driver.findElement(By.id("flights-filters-airline-leg-0-check_" + i)).click();
+						driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+					}//end outer if
+			}//end for loop
+					if(foundEmirates == false){
+						for (int i = 1; i < airlinesList.size(); i++) {
+							driver.findElement(By.id("flights-filters-airline-leg-0-check_" + i)).click();
+							driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+						}
+					}//end outer if
+	    }//end method
 
 	    public boolean testResultsAppearForCompleteTrip() {
 	        //waitForSearchResultsToAppear();
@@ -68,7 +67,9 @@ public class SearchResultsPage {
 	    }
 	    
 	    public void selectFlight(){
-	    	WebElement selectFlightButton = wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.id("flights-results-select-cta-btn-0"))));
+	    	JavascriptExecutor jse = (JavascriptExecutor)driver;
+	    	jse.executeScript("scroll(0, -300);");
+	    	WebElement selectFlightButton = driver.findElement(By.id("flights-results-select-cta-btn-0"));
 	    	//Press the 'Select' button for the first flight result
 			selectFlightButton.click();
 	    }

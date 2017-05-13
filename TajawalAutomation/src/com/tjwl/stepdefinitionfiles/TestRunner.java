@@ -7,5 +7,6 @@ import cucumber.api.junit.Cucumber;
 @Cucumber.Options(format={"html:output"})
 
 public class TestRunner {
+	Navigation nav = new Navigation();
 
 }

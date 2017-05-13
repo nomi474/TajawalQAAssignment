@@ -1,18 +1,26 @@
 package com.tjwl.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public class SearchFlightsPage {
 	
 	WebDriver driver;
+	WebDriverWait wait;
 	private static LocalDate departureDate;
 	private static LocalDate returnDate;
 	
@@ -91,7 +99,7 @@ public class SearchFlightsPage {
     	departureDate = LocalDate.now().plus(Period.ofDays((new Random().nextInt(40))));
     	//LocalDate returnDate = LocalDate.now().plus(Period.ofDays((new Random().nextInt(20))));
     	returnDate = departureDate.now().plus(Period.ofDays((new Random().nextInt(40))));
-    	while(returnDate.isBefore(departureDate)){
+    	while(returnDate.isBefore(departureDate) || returnDate.equals(departureDate)){
     		returnDate = LocalDate.now().plus(Period.ofDays((new Random().nextInt(40))));
     	}
     }
@@ -114,6 +122,4 @@ public class SearchFlightsPage {
     	myList.add(year);
     	return myList;
     }
-
-
 }

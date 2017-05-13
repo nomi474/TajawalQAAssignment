@@ -1,0 +1,23 @@
+package com.tjwl.common;
+
+import org.openqa.selenium.By;
+
+import com.tjwl.tests.TestManager;
+
+public class CommonFeatures {
+	
+	TestManager manager = new TestManager();
+	public void maximizeBrowserWindow(){
+		manager.maximizeBrowserWindow();
+	}
+	
+	public void ImplicitWait(int seconds){
+    	manager.ImplicitWait(seconds);
+	}
+	
+	public void waitForElementToAppear(By locator){
+		manager.waitForElementToAppear(locator);
+		
+	}
+
+}

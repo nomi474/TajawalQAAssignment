@@ -1,0 +1,88 @@
+package com.tjwl.pages;
+
+import java.util.concurrent.TimeUnit;
+
+import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
+
+public class TravelerDetails {
+	WebDriver driver;
+    public TravelerDetails(WebDriver driver) {
+        this.driver = driver;
+    }
+	public String getTotalTicketsPrice(){
+		return driver.findElement(By.xpath("(//*[@class='total-payment__total']/span[2])")).getText();
+	}
+	
+	public void selectTitleForTraveler1(String title1){
+		WebElement select = driver.findElement(By.id("flights-summary-travelers-form-title-0"));
+		Select dropDown = new Select(select);
+		dropDown.selectByValue(title1);
+	}
+	
+	public void selectTitleForTraveler2(String title2){
+		WebElement select2 = driver.findElement(By.id("flights-summary-travelers-form-title-1"));
+		Select dropDown2 = new Select(select2);
+		dropDown2.selectByValue(title2);
+	}
+	
+	public void enterFirstNameForTraveler1(String fname1){
+		driver.findElement(By.id("flights-summary-travelers-form-first-name-0")).clear();
+		driver.findElement(By.id("flights-summary-travelers-form-first-name-0")).sendKeys(fname1);
+	}
+	
+	public void enterFirstNameForTraveler2(String fname2){
+		driver.findElement(By.id("flights-summary-travelers-form-first-name-1")).clear();
+		driver.findElement(By.id("flights-summary-travelers-form-first-name-1")).sendKeys(fname2);
+	}
+	
+	public void enterLastNameForTraveler1(String lname1){
+		driver.findElement(By.id("flights-summary-travelers-form-last-name-0")).clear();
+		driver.findElement(By.id("flights-summary-travelers-form-last-name-0")).sendKeys(lname1);
+	}
+	
+	public void enterLastNameForTraveler2(String lname2){
+		driver.findElement(By.id("flights-summary-travelers-form-last-name-1")).clear();
+		driver.findElement(By.id("flights-summary-travelers-form-last-name-1")).sendKeys(lname2);
+	}
+	
+	public void selectTitleForContact(String titleContact){
+		WebElement select3 = driver.findElement(By.id("flights-summary-travelers-form-contact-title"));
+		Select dropDown3 = new Select(select3);
+		dropDown3.selectByValue(titleContact);
+	}
+	
+	public void enterFirstNameInContactSection(String fnameContact){
+		
+	}
+	
+	public void enterLastNameInContactSection(String lnameContact){
+		
+	}
+	
+	public void enterEmailInContactSection(String emailContact){
+		
+	}
+	
+	public void enterMobileInContactSection(String mobileContact){
+		
+	}
+	
+	public void verifyTotalPriceMatchesWithSelectFlightsPage(){
+		String totalPriceOnTravelDetailsPage = driver.findElement(By.xpath("(//*[@class='total-payment__total']/span[2])")).getText();
+		Assert.assertTrue(totalPriceOnTravelDetailsPage.endsWith(totalPriceOnSelectFlightPage));
+
+	}
+	
+	public void verifyTravelerDetailsPageIsLaunched(){
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	}
+	
+	public void goToPaymentDetailsPage(){
+	
+	}
+}
+

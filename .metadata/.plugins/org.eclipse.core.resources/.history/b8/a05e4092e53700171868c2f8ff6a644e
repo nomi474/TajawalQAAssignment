@@ -1,0 +1,36 @@
+package com.tjwl.pages;
+
+import org.openqa.selenium.WebDriver;
+
+public class PaymentDetails {
+	WebDriver driver;
+	
+	public PaymentDetails(WebDriver driver){
+		this.driver = driver;
+	}
+	
+	public void verifyPaymentDetaislPageShowsCorrectly(){
+		
+	}
+	
+	public void enterCardholderName(String chName){
+		
+	}
+	
+	public void selectExpirationMonth(String expMonth){
+		
+	}
+	
+	public void selectExpirationYear(String expYear){
+		
+	}
+	
+	public void enterSecurityCodeCVV(String cvvCode){
+		
+	}
+	
+	public void verifyTotalMatchesWithPaymentPage(){
+		
+	}
+	
+}

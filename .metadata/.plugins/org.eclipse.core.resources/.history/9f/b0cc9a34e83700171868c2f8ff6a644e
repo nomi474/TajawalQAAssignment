@@ -1,0 +1,76 @@
+package com.tjwl.pages;
+
+import java.util.concurrent.TimeUnit;
+
+import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+public class TravelerDetails {
+	WebDriver driver;
+    public TravelerDetails(WebDriver driver) {
+        this.driver = driver;
+    }
+	public String getTotalTicketsPrice(){
+		return driver.findElement(By.xpath("(//*[@class='total-payment__total']/span[2])")).getText();
+	}
+	
+	public void selectTitleForTraveler1(String title1){
+		
+	}
+	
+	public void selectTitleForTraveler2(String title2){
+		
+	}
+	
+	public void enterFirstNameForTraveler1(String fname1){
+		
+	}
+	
+	public void enterFirstNameForTraveler2(String fname2){
+		
+	}
+	
+	public void enterLastNameForTraveler1(String lname1){
+		
+	}
+	
+	public void enterLastNameForTraveler2(String lname2){
+		
+	}
+	
+	public void selectTitleForContact(String titleContact){
+		
+	}
+	
+	public void enterFirstNameInContactSection(String fnameContact){
+		
+	}
+	
+	public void enterLastNameInContactSection(String lnameContact){
+		
+	}
+	
+	public void enterEmailInContactSection(String emailContact){
+		
+	}
+	
+	public void enterMobileInContactSection(String mobileContact){
+		
+	}
+	
+	public void verifyTotalPriceMatchesWithSelectFlightsPage(){
+		String totalPriceOnTravelDetailsPage = driver.findElement(By.xpath("(//*[@class='total-payment__total']/span[2])")).getText();
+		Assert.assertTrue(totalPriceOnTravelDetailsPage.endsWith(totalPriceOnSelectFlightPage));
+
+	}
+	
+	public void verifyTravelerDetailsPageIsLaunched(){
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	}
+	
+	public void goToPaymentDetailsPage(){
+	
+	}
+}
+

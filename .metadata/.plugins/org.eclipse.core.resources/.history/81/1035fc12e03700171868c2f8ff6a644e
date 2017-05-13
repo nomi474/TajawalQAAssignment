@@ -1,0 +1,11 @@
+package com.tjwl.pages;
+
+import org.openqa.selenium.WebDriver;
+
+public class PaymentDetails {
+	WebDriver driver;
+	
+	public PaymentDetails(WebDriver driver){
+		this.driver = driver;
+	}
+}

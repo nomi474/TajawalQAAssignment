@@ -1,0 +1,45 @@
+package com.tjwl.pages;
+
+import org.junit.Assert;
+import org.openqa.selenium.WebDriver;
+
+public class PaymentDetails {
+	WebDriver driver;
+	
+	public PaymentDetails(WebDriver driver){
+		this.driver = driver;
+	}
+	
+	public void verifyPaymentDetailsPageShowsCorrectly(){
+		
+	}
+	
+	public void enterCardholderName(String chName){
+		
+	}
+	
+	public void enterCardNum(String cardNum){
+		
+	}
+	public void selectExpirationMonth(String expMonth){
+		
+	}
+	
+	public void selectExpirationYear(String expYear){
+		
+	}
+	
+	public void enterSecurityCodeCVV(String cvvCode){
+		
+	}
+	
+	public void verifyTotalMatchesWithTravelDetailsPage(){
+		String totalPriceOnTravelDetailsPage = driver.findElement(By.xpath("//li[@class='total-payment__total']/span[2]")).getText();
+		Assert.assertEquals(totalPriceOnTravelDetailsPage, totalPriceOnTravelDetailsPage);
+	}
+	
+	public void verifyTotalOnPayNowButton(){
+		Assert.assertTrue(true);
+	}
+	
+}

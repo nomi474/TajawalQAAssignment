@@ -1,0 +1,49 @@
+package com.tjwl.pages;
+
+import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+public class PaymentDetails {
+	WebDriver driver;
+	
+	public PaymentDetails(WebDriver driver){
+		this.driver = driver;
+	}
+	
+	public void verifyPaymentDetailsPageShowsCorrectly(){
+		
+	}
+	
+	public void enterCardholderName(String chName){
+		driver.findElement(By.id("common-credit-card-holder")).clear();
+		driver.findElement(By.id("common-credit-card-holder")).sendKeys(chName);
+	}
+	
+	public void enterCardNum(String cardNum){
+		driver.findElement(By.id("common-credit-card-number")).clear();
+		driver.findElement(By.id("common-credit-card-number")).sendKeys(cardNum);
+	}
+	public void selectExpirationMonth(String expMonth){
+		
+	}
+	
+	public void selectExpirationYear(String expYear){
+		
+	}
+	
+	public void enterSecurityCodeCVV(String cvvCode){
+		
+	}
+	
+	public void verifyTotalMatchesWithTravelDetailsPage(){
+		String totalPriceOnTravelDetailsPage = driver.findElement(By.xpath("//li[@class='total-payment__total']/span[2]")).getText();
+		Assert.assertEquals(totalPriceOnTravelDetailsPage, totalPriceOnTravelDetailsPage);
+	}
+	
+	public void verifyTotalOnPayNowButton(){
+		String payNowButtonText = driver.findElement(By.xpath("//button[@id='flights-payment-paynow']")).getText();
+		Assert.assertTrue(payNowButtonText.endsWith(totalPriceOnTravelDetailsPage));
+	}
+	
+}

@@ -1,0 +1,8 @@
+package com.tjwl.pages;
+
+public class TravelerDetails {
+	
+	public String getTotalTicketsPrice(){
+		return driver.findElement(By.xpath("(//*[@class='total-payment__total']/span[2])")).getText();
+	}
+}

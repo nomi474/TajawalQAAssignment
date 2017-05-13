@@ -1,0 +1,13 @@
+package com.tjwl.pages;
+
+import org.openqa.selenium.WebDriver;
+
+public class TravelerDetails {
+	
+    public SearchResultsPage(WebDriver driver) {
+        this.driver = driver;
+    }
+	public String getTotalTicketsPrice(){
+		return driver.findElement(By.xpath("(//*[@class='total-payment__total']/span[2])")).getText();
+	}
+}
