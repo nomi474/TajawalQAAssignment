@@ -5,9 +5,11 @@ Test Automation done by Nauman Sheikh.
 Platform
 
 <h2>Languages Used</h2>
-Java
-JavaScript
-HTML5
+<ul>
+<li>Java</li>
+<li>JavaScript</li>
+<li>HTML5</li>
+</ul>
 
 <h2>Notable Libraries</h2>
 <ul>
@@ -22,42 +24,23 @@ HTML5
 <li>BDD (Behavior Driven Development)</li>
 </ul>
 
-To run this app you'll likely need a rough understanding of how Rails apps work these days. You will also need: 
-PostgreSQL 9.4+
-Amazon AWS
-Puma Server
-Paperclip gem
+To run this app you'll likely need a rough understanding of how Selenium works. You will also need: 
+<ul>
+<li>Selenium Server jar</li>
+<li>Selenium Client jar for Java</li>
+<li>Various jar files for Cucumber</li>
+<li>Chrome driver executable for running automation on Chrome browser</li>
+<li>Gecko driver executable for running automation on Firefox browser</li>
+</ul>
+<Strong>Note:</Strong> All these files are already provided in the repository. Once you download the zip file, you'll automatically get all the files mentioned above.
+
+<h2>Supported Browser Versions</h2>
+<ul>
+<li>Chrome: Version 58</li>
+<li>Firefox: Version 57 </li>
+</ul>
+
 First, clone the repo (ideally from your own fork):
 
-git clone git@github.com:nomi474/pinterest-app.git
+git clone git@github.com:nomi474/tajawalqaassignment.git
 
-Then move into that directory install the gems using Bundler:
-
-bundle install
-
-Next you will need to configure your database.yml file.
-
-cp config/database.example.yml config/database.yml
-
-You'll likely need to edit those settings for your local machine.
-
-Now you need to create and set up the database:
-
-rake db:setup
-
-In particular, you may want to check your username in psql with command: $ psql which should bring up your psql command line username=#. You can update your config/database.yml accordingly. Also,you may create new PG database.
-S3 is used in development
-
-Due to the plugins used for handling uploads, S3 support is required even in development. It's not ideal, but you'll need to fill out those S3 keys in your .env file with details for your S3 bucket.
-
-In both development and production you will need to configure CORS correctly on Amazon.
-
-Testing with RSpec
-
-To start up the automated testing you might first need to create and migrate the test DB:
-RAILS_ENV=test rake db:create
-RAILS_ENV=test rake db:migrate
-
-Then you can start up the automated tests with:
-
-rake spec
