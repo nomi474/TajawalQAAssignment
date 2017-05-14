@@ -85,6 +85,16 @@ public class Navigation{
 		sf.selectRandomReturnDate();
 	}
 	
+	@And("^I store Airport names for comparison$")
+	public void saveAirportNames(){
+		sf.getAirportsForComparison();
+	}
+	
+	@And("^I store depart and return dates for comparison$")
+	public void saveDateValues(){
+		sf.getDatesForComparison();
+	}
+	
 	@And("^I select two Adult passengers$")
 	public void incrementAdultPassengerCount(){
 		sf.incrementAdultPassengersNumber();
@@ -99,6 +109,16 @@ public class Navigation{
 	public void verifySearchResultsPageAppears(){
 		sr= new SearchResultsPage(driver);
 		sr.testResultsAppearForCompleteTrip();				
+	}
+			
+	@And("^I verify departure and destination airports$")
+	public void verifyAirports(){
+		sr.compareAirports();				
+	}
+	
+	@And("^I verify departure and return dates$")
+	public void verifyDates(){
+		sr.compareDates();				
 	}
 	
 	@And("^I filter by my favorite airline$")
@@ -214,11 +234,6 @@ public class Navigation{
 	@And("^I enter security code cvv as ([^\"]*)$")
 	public void enterSecurityCodeCVV(String cvvCode){
 		pd.enterSecurityCodeCVV(cvvCode);			
-	}
-	
-	@And("^I verify that the total on Payment page matches the total on Traveler details page$")
-	public void verifyTotalMatchesWithTravelDetailsPage(){
-		pd.verifyTotalMatchesWithTravelDetailsPage();				
 	}
 	
 	@And("^I verify that the total on \"Pay now\" button shows correct amount$")

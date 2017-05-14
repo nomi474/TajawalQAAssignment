@@ -3,6 +3,7 @@ package com.tjwl.pages;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
@@ -21,6 +22,7 @@ public class SearchResultsPage {
 	 WebDriverWait wait;
 	 JavascriptExecutor jse;
 	 CommonFeatures cf;
+	 SearchFlightsPage sf;
 	 public static String totalPriceOnSearchResultsPage; 
 	    public SearchResultsPage(WebDriver driver) {
 	        this.driver = driver;
@@ -75,5 +77,23 @@ public class SearchResultsPage {
 	    	WebElement selectFlightButton = driver.findElement(By.id("flights-results-select-cta-btn-0"));
 	    	//Press the 'Select' button for the first flight result
 			selectFlightButton.click();
-	    }	    
+	    }	  
+	    
+	    public void compareAirports(){
+	    	List<WebElement> list = driver.findElements(By.xpath("//airport-code[@tip='true'][1]"));
+	    	String departAirport = list.get(0).getText();
+	    	//Assert.assertEquals(SearchFlightsPage.departureAirport, departAirport);	    	
+	    	String destAirport = list.get(1).getText();
+	    	//Assert.assertEquals(SearchFlightsPage.destinationAirport, destAirport);
+	    	
+	    }
+	    public void compareDates(){
+	    	WebElement elemDepartDate = driver.findElement(By.xpath("(.//span[@class='block font-weight-600 text-chambray'])[3]"));	    															 
+	    	String departureDate = elemDepartDate.getText();
+	    	//Assert.assertEquals(SearchFlightsPage.departureDateToCompare,departureDate);
+	    	
+	    	WebElement elemRetDate = driver.findElement(By.xpath("(.//span[@class='block font-weight-600 text-chambray'])[4]"));
+	    	String returnDate = elemRetDate.getText();
+	    	//Assert.assertEquals(SearchFlightsPage.returnDateToCompare,returnDate);
+	    }
 }

@@ -9,7 +9,9 @@ import com.tjwl.common.CommonFeatures;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -20,6 +22,11 @@ public class SearchFlightsPage {
 	WebDriverWait wait;
 	private static LocalDate departureDate;
 	private static LocalDate returnDate;
+	
+	public static String departureDateToCompare;
+	public static String returnDateToCompare;
+	public static String departureAirport;
+	public static String destinationAirport;
 	CommonFeatures cf;
 	
 	public SearchFlightsPage(WebDriver driver){
@@ -47,9 +54,12 @@ public class SearchFlightsPage {
     	int i = rn.nextInt(5);
     	driver.findElement(By.id("flights-search-origin-0")).clear();
     	driver.findElement(By.id("flights-search-origin-0")).sendKeys(departCityList.get(i));
-    	List<WebElement> autoSuggest = driver.findElements(By.xpath("//li[@class='uib-typeahead-match']"));
-    	for (WebElement a : autoSuggest){
-    		autoSuggest.get(0).click();
+    	try{
+	    	List<WebElement> autoSuggest = driver.findElements(By.xpath("//li[@class='uib-typeahead-match']"));
+	    	for (WebElement a : autoSuggest){
+	    		autoSuggest.get(0).click();
+	    	}
+    	}catch (org.openqa.selenium.StaleElementReferenceException sere){    		
     	}
     }
     
@@ -64,9 +74,12 @@ public class SearchFlightsPage {
     	destCityList.add("Cairo");
     	driver.findElement(By.id("flights-search-destination-0")).clear();
     	driver.findElement(By.id("flights-search-destination-0")).sendKeys(destCityList.get(i));
-    	List<WebElement> autoSuggest = driver.findElements(By.xpath("//li[@class='uib-typeahead-match']"));
-    	for (WebElement a : autoSuggest){
-    		autoSuggest.get(0).click();
+    	try{
+	    	List<WebElement> autoSuggest = driver.findElements(By.xpath("//li[@class='uib-typeahead-match']"));
+	    	for (WebElement a : autoSuggest){
+	    		autoSuggest.get(0).click();
+	    	}
+    	}catch (org.openqa.selenium.StaleElementReferenceException sere){    		
     	}
     }
 
@@ -145,5 +158,18 @@ public class SearchFlightsPage {
     	myList.add(month);
     	myList.add(year);
     	return myList;
+    }
+    
+    public void getDatesForComparison(){
+    	String longDepartDate = (Date.from(departureDate.atStartOfDay(ZoneId.systemDefault()).toInstant())).toString(); 
+    	departureDateToCompare = longDepartDate.substring(8,10) + " " + longDepartDate.substring(4, 7) + " " + longDepartDate.substring(24);
+    	
+    	String longRetDate = (Date.from(returnDate.atStartOfDay(ZoneId.systemDefault()).toInstant())).toString();
+    	returnDateToCompare = longRetDate.substring(8,10) + " " + longRetDate.substring(4, 7) + " " + longRetDate.substring(24);    	
+    }
+    
+    public void getAirportsForComparison(){
+    	departureAirport = driver.findElement(By.id("flights-search-origin-0")).getAttribute("value").substring(0,3);
+    	destinationAirport = driver.findElement(By.id("flights-search-destination-0")).getAttribute("value").substring(0, 3);
     }
 }

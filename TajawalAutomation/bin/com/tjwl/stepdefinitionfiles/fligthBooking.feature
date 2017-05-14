@@ -18,12 +18,16 @@ Scenario:	Search and book a flight
 	And I select the returnDate
 	And I wait for 3 seconds	
 	And I select two Adult passengers
+	And I store Airport names for comparison
+	And I store depart and return dates for comparison
 	And I click on the Search Flights button
 	And I wait for 20 seconds
 	
 #Scenario: Select a flight	
 	Given I am at the Flight Search Results page
 	And I wait for 50 seconds
+	And I verify departure and destination airports
+	And I verify departure and return dates
 	Then I filter by my favorite airline	
 	And I wait for 20 seconds
 	And I get the ticket price
@@ -54,7 +58,6 @@ Scenario:	Search and book a flight
 	And I select expiration year as 2018
 	And I enter security code cvv as 666
 	And I verify that the total on "Pay now" button shows correct amount
-	And I verify that the total on Payment page matches the total on Traveler details page
 	
 	
 	

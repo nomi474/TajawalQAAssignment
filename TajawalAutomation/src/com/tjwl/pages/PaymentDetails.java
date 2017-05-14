@@ -47,14 +47,10 @@ public class PaymentDetails {
 	public void enterSecurityCodeCVV(String cvvCode){
 		driver.findElement(By.id("common-credit-card-cvv")).clear();
 		driver.findElement(By.id("common-credit-card-cvv")).sendKeys(cvvCode);
-	}
-	
-	public void verifyTotalMatchesWithTravelDetailsPage(){
-		totalPriceOnPaymentPage = driver.findElement(By.xpath("//li[@class='total-payment__total']/span[2]")).getText();
-		Assert.assertTrue(TravelerDetails.totalPriceOnTravelDetailsPage.equals(totalPriceOnPaymentPage));
-	}
+	}	
 	
 	public void verifyTotalOnPayNowButton(){
+		totalPriceOnPaymentPage = driver.findElement(By.xpath("//li[@class='total-payment__total']/span[2]")).getText();
 		String payNowButtonText = driver.findElement(By.xpath("//button[@id='flights-payment-paynow']")).getText();
 		Assert.assertTrue(payNowButtonText.endsWith(totalPriceOnPaymentPage));
 	}
