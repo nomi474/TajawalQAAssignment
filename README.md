@@ -1,8 +1,9 @@
 <h1>Tajawal Flight Booking App Test Automation</h1>
 
-Tajawal (http://www.tajawal.com) is an online flight and hotels booking app. This project automates some of the functionality 
-Test Automation done by Nauman Sheikh.
-Platform
+<p>Tajawal (http://www.tajawal.com) is an online flight and hotels booking app. This project automates some of the functionality of the Flights Booking feature of the application.</p>
+
+<p>Test Automation done by Nauman Sheikh.</p>
+
 
 <h2>Languages Used</h2>
 <ul>
