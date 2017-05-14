@@ -1,26 +1,26 @@
-Tajawal Flight Booking App Test Automation
+<h1>Tajawal Flight Booking App Test Automation</h1>
 
-Tajawal (http://www.tajawal.com) is an online flight and hotels booking app.
+Tajawal (http://www.tajawal.com) is an online flight and hotels booking app. This project automates some of the functionality 
 Test Automation done by Nauman Sheikh.
 Platform
 
-Languages Used
-
-Ruby
+<h2>Languages Used</h2>
+Java
 JavaScript
 HTML5
-Notable Libraries
 
-Rails 4.2.0
-Server Platform
+<h2>Notable Libraries</h2>
+<ul>
+<li>Selenium</li>
+<li>Junit</li>
+<li>Cucumber</li>
+</ul>
 
-Ruby 2.3.3
-PostgreSQL 9+
-External Services
-
-Amazon AWS
-Development
-
+<h2>Design Patterns</h2>
+<ul>
+<li>Page Object Model</li>
+<li>BDD (Behavior Driven Development)</li>
+</ul>
 
 To run this app you'll likely need a rough understanding of how Rails apps work these days. You will also need: 
 PostgreSQL 9.4+
